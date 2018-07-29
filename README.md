@@ -1,6 +1,20 @@
 ## Overview
 
+Around the world, people are spending an increasing amount of time on their mobile devices for email, social networking, banking and a whole range of other activities. But typing on mobile devices can be a serious pain. SwiftKey, our corporate partner in this capstone, builds a smart keyboard that makes it easier for people to type on their mobile devices. One cornerstone of their smart keyboard is predictive text models. When someone types:
 
+I went to the
+
+the keyboard presents three options for what the next word might be. For example, the three words might be gym, store, restaurant. In this capstone you will work on understanding and building predictive text models like those used by SwiftKey.
+
+For more information about some of the basic natural language processing resources, please refer to the links below. You are welcome to use these resources or any others you can find while performing this analysis. I should state that I am not an expert in natural language processing. The purpose of this exploratory analysis is to explore new data types and understand the text that has been scraped from popular sites, such as Twitter, blog sites, and news sites.
+
+Here are a few resources that might be good places to start as you tackle any further analysis usng natural language processing:
+
+[Text mining infrastucture in R](http://www.jstatsoft.org/v25/i05/)
+[CRAN Task View: Natural Language Processing](http://cran.r-project.org/web/views/NaturalLanguageProcessing.html)
+[Videos](https://www.youtube.com/user/OpenCourseOnline/search?query=NLP) and [Slides](https://web.stanford.edu/~jurafsky/NLPCourseraSlides.html) from Stanford Natural Language Processing course
+
+## Purpose of Analysis
 
 The overall goal of this analysis is to develop a text algorithm and fit a predictive model in the future using the natural language tools available in R. In order to do this, we will need to first review the data, then perform some basic exploratory analysis, and lastly state any initial insights gathered from the exploratory analysis, which will be used for future modeling. Specifically, we will need to include the following in our research:
 
