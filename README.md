@@ -12,7 +12,7 @@ Here are a few resources that might be good places to start as you tackle any fu
 
 [Videos](https://www.youtube.com/user/OpenCourseOnline/search?query=NLP) and [Slides](https://web.stanford.edu/~jurafsky/NLPCourseraSlides.html) from Stanford Natural Language Processing course
 
-## Purpose of Analysis
+## Purpose of this Analysis
 
 The overall goal of this analysis is to develop a text algorithm and fit a predictive model in the future using the natural language tools available in R. In order to do this, we will need to first review the data, then perform some basic exploratory analysis, and lastly state any initial insights gathered from the exploratory analysis, which will be used for future modeling. Specifically, we will need to include the following in our research:
 
