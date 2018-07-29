@@ -4,6 +4,8 @@ Around the world, people are spending an increasing amount of time on their mobi
 
 Dataset: [Text Data](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) [583 MB]
 
+## Natural Language Processing Resources
+
 For more information about some of the basic natural language processing resources, please refer to the links below. You are welcome to use these resources or any others you can find while performing this analysis. I should state that I am not an expert in natural language processing. The purpose of this exploratory analysis is to explore new data types and understand the text that has been scraped from popular sites, such as Twitter, blog sites, and news sites.
 
 Here are a few resources that might be good places to start as you tackle any further analysis usng natural language processing:
