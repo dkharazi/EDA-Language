@@ -64,6 +64,10 @@ wordcloud(news, max.words = 100, random.order = FALSE)
 wordcloud(blogs, max.words = 100, random.order = FALSE)
 ```
 
+<p align="center">
+  <img width="460" height="360" src="/graphics/plot1.png">
+</p>
+
 ## Data Preprocessing
 
 After creating wordclouds for each dataset, we'd like to find the most commonly used words by calculating the frequencies for each word. In order to speed up the processing time during our calculations, we'll need to take a sample from the three datasets, but ensure that the sample is large enough to properly represent the data. In the fields of computational linguistics and probability, an "n-gram" is a contiguous sequence of "n" items from a given sequence of text or speech. 
@@ -136,6 +140,10 @@ ggplot(dfm3, aes(word, freq)) +
   ggtitle("Top 10 Trigrams") +
   theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+<p align="center">
+  <img width="400" height="400" src="/graphics/plot2.png">
+</p>
 
 ## Next Steps
 
