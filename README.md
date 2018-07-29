@@ -12,6 +12,8 @@ Here are a few resources that might be good places to start as you tackle any fu
 
 [Videos](https://www.youtube.com/user/OpenCourseOnline/search?query=NLP) and [Slides](https://web.stanford.edu/~jurafsky/NLPCourseraSlides.html) from Stanford Natural Language Processing course
 
+Dataset: [Text Data](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) [583 MB]
+
 ## Purpose of this Analysis
 
 The overall goal of this analysis is to develop a text algorithm and fit a predictive model in the future using the natural language tools available in R. In order to do this, we will need to first review the data, then perform some basic exploratory analysis, and lastly state any initial insights gathered from the exploratory analysis, which will be used for future modeling. Specifically, we will need to include the following in our research:
@@ -22,7 +24,7 @@ The overall goal of this analysis is to develop a text algorithm and fit a predi
 
 After examining the frequencies of each word from the data, we should compare the frequencies that have been produced using Zipf's law, which is a law that relates to natural language utterances. For more information about Zipf's law, please refer below to a description pulled from Wikipedia.
 
-## Description about Zipf's Law
+## Description of Zipf's Law
 
 Zipf's law is an empirical law formulated using mathematical statistics that refers to the fact that many types of data studied in the physical and social sciences can be approximated with a Zipfian distribution, one of a family of related discrete power law probability distributions. Zipf distribution is related to the zeta distribution, but is not identical.
 
