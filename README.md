@@ -1,6 +1,8 @@
 ## Overview
 
-Around the world, people are spending an increasing amount of time on their mobile devices for email, social networking, banking and a whole range of other activities. But typing on mobile devices can be a serious pain. SwiftKey, our corporate partner in this capstone, builds a smart keyboard that makes it easier for people to type on their mobile devices. One cornerstone of their smart keyboard is predictive text models. When someone types _"I went to the"_, the keyboard presents three options for what the next word might be. For example, the three words might be gym, store, restaurant. In this capstone you will work on understanding and building predictive text models like those used by SwiftKey.
+Around the world, people are spending an increasing amount of time on their mobile devices for email, social networking, banking and a whole range of other activities. But typing on mobile devices can be a serious pain. SwiftKey, our corporate partner in this capstone, builds a smart keyboard that makes it easier for people to type on their mobile devices. One cornerstone of their smart keyboard is predictive text models. When someone types _"I went to the"_, the keyboard presents three options for what the next word might be. For example, the three words might be gym, store, restaurant. In this capstone we will work on understanding and building predictive text models like those used by SwiftKey. For the data, or any information about the data, please refer to the link below.
+
+Dataset: [Text Data](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) [583 MB]
 
 For more information about some of the basic natural language processing resources, please refer to the links below. You are welcome to use these resources or any others you can find while performing this analysis. I should state that I am not an expert in natural language processing. The purpose of this exploratory analysis is to explore new data types and understand the text that has been scraped from popular sites, such as Twitter, blog sites, and news sites.
 
@@ -11,8 +13,6 @@ Here are a few resources that might be good places to start as you tackle any fu
 [CRAN Task View: Natural Language Processing](http://cran.r-project.org/web/views/NaturalLanguageProcessing.html)  
 
 [Videos](https://www.youtube.com/user/OpenCourseOnline/search?query=NLP) and [Slides](https://web.stanford.edu/~jurafsky/NLPCourseraSlides.html) from Stanford Natural Language Processing course
-
-Dataset: [Text Data](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) [583 MB]
 
 ## Purpose of this Analysis
 
