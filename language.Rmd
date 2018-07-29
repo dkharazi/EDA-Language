@@ -1,0 +1,143 @@
+---
+title: "Language"
+author: "Darius Kharazi"
+date: "7/29/2018"
+output: html_document
+---
+
+## Synopsis
+
+The overall goal of this analysis is to develop a text algorithm and fit a predictive model using the natural language tools available in R. In order to do this, we will need to first review the data, then perform some basic exploratory analysis, and lastly state any initial insights gathered from the exploratory analysis, which will be used for future modeling. Specifically, we will need to include the following in our research:
+
+- Basic summaries
+- Word counts, line counts, and basic data tables
+- Basic plots, such as histograms, to illustrate features of the data
+
+## Import Statements
+
+First let's read in the libraries and data.
+
+```{r setup, message=FALSE}
+## Import libraries
+library(knitr)
+library(wordcloud)
+library(quanteda)
+library(ggplot2)
+
+## Import data
+twit <- readLines("~/Desktop/final/en_US/twitter.txt")
+news <-readLines("~/Desktop/final/en_US/news.txt")
+blogs <- readLines("~/Desktop/final/en_US/blogs.txt")
+
+## Set the seed
+set.seed(456)
+```
+
+Next, I will calculate the size of each text file, count the number of lines in the text files, and count the number of words. Although we originally wanted to count the words in each file using the "word_count" function available in Qdap directly here, the size of these files makes it too slow. So I back-calculate it later after I subsample the data to include only 1% of the total lines.
+
+## Size of  Data
+
+```{r size}
+## Number of observations in the datasets
+length(twit)
+length(news)
+length(blogs)
+
+## Size of data
+format(object.size(twit), units = "auto")
+format(object.size(news), units = "auto")
+format(object.size(blogs), units = "auto")
+```
+
+## Initial Word Clouds
+
+For the purpose of this analysis, we should start by looking at some of the most popular words in each dataset. Since each dataset is small enough to be read, we will not make a word cloud on the samples of the data.
+
+```{r wordcloud}
+## Word cloud of twitter data
+wordcloud(twit, max.words = 100, random.order = FALSE)
+
+## Word cloud of news data
+wordcloud(news, max.words = 100, random.order = FALSE)
+
+## Word cloud of blogging data
+wordcloud(blogs, max.words = 100, random.order = FALSE)
+```
+
+## Data Preprocessing
+
+After creating wordclouds for each dataset, we'd like to find the most commonly used words by calculating the frequencies for each word. In order to speed up the processing time during our calculations, we'll need to take a sample from the three datasets, but ensure that the sample is large enough to properly represent the data. In the fields of computational linguistics and probability, an "n-gram" is a contiguous sequence of "n" items from a given sequence of text or speech. 
+Here, we will find the top 10 unigrams, bigrams, and trigrams from the sample.
+
+```{r preprocess}
+## Sample the data
+sample <- sample(c(twit, news, blogs), 10000, replace = FALSE)
+
+## Clean the text
+sample <- gsub("[^0-9A-Za-z///' ]", "", sample) # removing special characters
+sample <- gsub("(f|ht)(tp)(s?)(://)(\\S*)", "", sample) # removing urls
+sample <- gsub(" #\\S*","", sample)  # removing hash tags 
+
+## Create document-term matrices
+dfm1 <- dfm(sample, ngrams = 1, verbose = FALSE, concatenator = " ")
+dfm2 <- dfm(sample, ngrams = 2, verbose = FALSE, concatenator = " ")
+dfm3 <- dfm(sample, ngrams = 3, verbose = FALSE, concatenator = " ")
+
+## Get frequencies of each word
+dfm1 <- as.data.frame(as.matrix(docfreq(dfm1)))
+dfm2 <- as.data.frame(as.matrix(docfreq(dfm2)))
+dfm3 <- as.data.frame(as.matrix(docfreq(dfm3)))
+
+## Sort by frequency
+dfm1 <- sort(rowSums(dfm1), decreasing=TRUE)[1:10]
+dfm2 <- sort(rowSums(dfm2), decreasing=TRUE)[1:10]
+dfm3 <- sort(rowSums(dfm3), decreasing=TRUE)[1:10]
+
+## Create data frames for future plots
+dfm1 <- data.frame(word = names(dfm1), freq = dfm1, row.names = 1:length(dfm1))
+dfm2 <- data.frame(word = names(dfm2), freq = dfm2, row.names = 1:length(dfm2))
+dfm3 <- data.frame(word = names(dfm3), freq = dfm3, row.names = 1:length(dfm3))
+
+## Convert "words" to factor variable
+dfm1$word <- with(dfm1, factor(word, levels = word))
+dfm2$word <- with(dfm2, factor(word, levels = word))
+dfm3$word <- with(dfm3, factor(word, levels = word))
+```
+
+## Plots
+
+From our plots, we are able to find the frequencies of the top 10 most popular unigrams, bigrams, and trigrams. The freuqncies from our plots can be compared to the true frequencies that have been given using Zipf's Law. I've provided a short description about Zipf's law from Wikipedia below:
+
+* Zipf's law is an empirical law formulated using mathematical statistics that refers to the fact that many types of data studied in the physical and social sciences can be approximated with a Zipfian distribution, one of a family of related discrete power law probability distributions. Zipf distribution is related to the zeta distribution, but is not identical.
+
+For example, Zipf's law states that given some corpus of natural language utterances, the frequency of any word is inversely proportional to its rank in the frequency table. Thus the most frequent word will occur approximately twice as often as the second most frequent word, three times as often as the third most frequent word, etc.: the rank-frequency distribution is an inverse relation. For example, in the Brown Corpus of American English text, the word the is the most frequently occurring word, and by itself accounts for nearly 7% of all word occurrences (69,971 out of slightly over 1 million). True to Zipf's Law, the second-place word of accounts for slightly over 3.5% of words (36,411 occurrences), followed by and (28,852). Only 135 vocabulary items are needed to account for half the Brown Corpus. *
+
+Now that we understand some general information about Zip's law, we are able to get a better understanding of the meaning behind the frequencies for each unigram.
+
+```{r plots}
+## Plot top 10 most popular unigrams
+ggplot(dfm1, aes(word, freq)) +
+  geom_bar(stat = "identity", fill = "blue") + 
+  labs(x = "", y = "Frequency") +
+  ggtitle("Top 10 Unigrams") +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1))
+
+## Plot top 10 most popular bigrams
+ggplot(dfm2, aes(word, freq)) +
+  geom_bar(stat = "identity", fill = "blue") + 
+  labs(x = "", y = "Frequency") +
+  ggtitle("Top 10 Bigrams") +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1))
+
+## Plot top 10 most popular trigrams
+ggplot(dfm3, aes(word, freq)) +
+  geom_bar(stat = "identity", fill = "blue") + 
+  labs(x = "", y = "Frequency") +
+  ggtitle("Top 10 Trigrams") +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Next Steps
+
+In the future, we will want to build a predictive model that estimates the general sentiment of some given text. Our exploratory analysis has paved the way for us to do this, since we are now able to filter characters and calculate the frequencies of any sequence of words from a given line of text. For future references, we will want to filter out additional characters from the text, but we have done a fairly good job so far. Specifically, we will want to filter out profanity, special characters, and possibly prepositional phrases and conjunctions, in order to find the overall sentiment of text.
+
